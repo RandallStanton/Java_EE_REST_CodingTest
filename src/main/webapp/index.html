@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="js/codetest.css" rel="stylesheet">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/tabulator.js"></script>
+<link href="js/tabulator.css" rel="stylesheet">
+<script type="text/javascript" src="js/codetest.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		loadTableData();
+		clearFormForNew();
+	});
+</script>
+</head>
+<body>
+	<div class="employeeFormDiv"></div>
+	<h1>XXXXXX Coding Test Welcome. . .</h1>
+	<div></div>
+	<div align="center" class="employeeFormDiv">
+		<div style="width: 540px;">
+			..Welcome to the XXXXX "Employee" coding test/sample question rest-app's VERY bare
+			bones functional testing only UI..
+			<ul style="align: center">
+				<li style="text-align: left">Enter field data and click 'Save
+					New Employee' to persist your first employee.</li>
+				<li style="text-align: left">Selecting a row from the table
+					below to update or remove the employee record.</li>
+				<li style="text-align: left">Because of time constraints and server side focus there is no 'Pagination',
+					'Validation', 'Search' or pretty things and features you would expect in production code. It's all about the REST
+					services.</li>
+			</ul>
+		</div>
+		<form id='employee' action="">
+			<table>
+				<tr>
+					<td class="label">Employee #</td>
+					<td class="employee" colspan="3"><input
+						class="employeeIdField" id="id" readonly="readonly"></input></td>
+				</tr>
+				<tr>
+					<td class="label">Name:</td>
+					<td class="wideField" colspan="3"><input class="field"
+						id="name" autofocus></input></td>
+				</tr>
+				<tr>
+					<td class="label">Phone:</td>
+					<td class="wideField" colspan="3"><input class="field"
+						id="telephone"></input></td>
+				</tr>
+				<tr>
+					<td class="label">Email:</td>
+					<td class="wideField" colspan="3"><input class="field"
+						id="email"></input></td>
+				</tr>
+				<tr>
+					<td class="label">Street Address:</td>
+					<td class="wideField" colspan="3"><input class="field"
+						id="street"></input></td>
+				</tr>
+				<tr>
+					<td class="label">City:</td>
+					<td class="wideField" colspan="3"><input class="field"
+						id="city"></input></td>
+				</tr>
+				<tr>
+					<td class="label">State:</td>
+					<td class="slimField"><input class="field" id="state"></input></td>
+					<td class="label">Zip Code:</td>
+					<td class="wideField"><input class="field" id="zip"></input></td>
+				</tr>
+				<tr>
+					<td class="label"></td>
+					<td class="wideField"><input type='button'
+						value="Save New Employee" id="updateButton"
+						onclick="updateEmployeeWS()"></input></td>
+					<td></td>
+					<td><input type='button' value="Clear Form" id="clearButton"
+						onclick="clearFormForNew()"></input> <input type='button'
+						value=" Delete " id="deleteButton" onclick="handleDelete()"></input></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="employee-table">
+		<!-- dynamic tabulator -->
+	</div>
+	<script type="text/javascript">
+		$("#employee-table").tabulator({
+			height : "220px",
+			fitColumns : true,
+			selectable : 1,
+			selectableRollingSelection : true,
+			columns : [ {
+				title : "Employee Id",
+				field : "id",
+				sorter : "string",
+				width : 150
+			}, {
+				title : "Name",
+				field : "name",
+				sorter : "string",
+				width : 150
+			}, {
+				title : "Phone",
+				field : "phone",
+				sorter : "string",
+				width : 150
+			}, {
+				title : "Email",
+				field : "email",
+				sorter : "string",
+				width : 150
+			}, {
+				title : "Address",
+				field : "street",
+				sorter : "string",
+				align : "left"
+			}, {
+				title : "City",
+				field : "city",
+				sorter : "string",
+				align : "center"
+			}, {
+				title : "State",
+				field : "state",
+				sorter : "string",
+				align : "left"
+			}, {
+				title : "Zip",
+				field : "zip",
+				sorter : "number",
+				sortable : false
+			}, ],
+			rowClick : function(e, id, data, row) {
+				populateFormWS(data.id);
+			},
+			ajaxURL : "/codetest/ws/employees",
+			ajaxType : "GET"
+		});
+	</script>
+</body>
+</html>

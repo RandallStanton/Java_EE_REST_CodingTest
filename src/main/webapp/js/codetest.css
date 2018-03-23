@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+html, body {
+	height: 100%;
+	padding: 10px;
+}
+.label {
+	text-align: right;
+	font-weight: bold;
+	width: 120px;
+	padding: 3px;
+	color: #303030;
+}
+
+#employee {
+	border: 1px solid #000090;
+	background-color: #f0f0ff;
+	width: 540px;
+	padding-right: 80px;
+}
+
+#employee td {
+	font-size: 10pt;
+}
+
+.field {
+	width: 99%;
+}
+
+.slimField {
+	width: 80px;
+}
+
+.wideField {
+	width: 200px;
+}
+
+.employeeIdField {
+	border: none;
+	background-color: #f0f0ff;
+	width: 99%;
+	padding: 2px 2px;
+	width: 200px;
+	text-align: left;
+	font-weight: bold;
+}
+.employeeFormDiv {
+padding-bottom: 20px;
+}
